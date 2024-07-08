@@ -1,4 +1,3 @@
-"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -20,22 +19,28 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
+  BinaryDecode: () => BinaryDecode,
+  BinaryEncode: () => BinaryEncode,
+  HexDecodeascii: () => HexDecodeascii,
+  HexDecodeuni: () => HexDecodeuni,
+  HexEncodeascii: () => HexEncodeascii,
+  HexEncodeuni: () => HexEncodeuni,
   Unit: () => Unit,
   degrees: () => degrees,
   factorial: () => factorial,
   factorialBigInt: () => factorialBigInt,
-  getrandomitemfromarr: () => getrandomitemfromarr,
+  getrandomfromarr: () => getrandomfromarr,
   radians: () => radians,
   randomfloat: () => randomfloat,
   randomint: () => randomint,
-  shuffarr: () => shuffarr,
+  shufflearr: () => shufflearr,
   splitarr: () => splitarr,
-  todays: () => todays,
-  tohrs: () => tohrs,
-  tomins: () => tomins,
-  toms: () => toms,
-  tosecs: () => tosecs,
-  towks: () => towks
+  t2days: () => t2days,
+  t2hrs: () => t2hrs,
+  t2mins: () => t2mins,
+  t2ms: () => t2ms,
+  t2secs: () => t2secs,
+  t2wks: () => t2wks
 });
 module.exports = __toCommonJS(src_exports);
 var Unit = /* @__PURE__ */ ((Unit2) => {
@@ -48,9 +53,22 @@ var Unit = /* @__PURE__ */ ((Unit2) => {
   return Unit2;
 })(Unit || {});
 function randomint(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  if (!min) {
+    return Error("Please provide a Minimum value!");
+  }
+  if (!max) {
+    return Error("Please provide a Maximum value!");
+  } else {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 }
 function randomfloat(min, max, round) {
+  if (!min) {
+    return Error("Please provide a Minimum value!");
+  }
+  if (!max) {
+    return Error("Please provide a Maximum value!");
+  }
   if (!round) {
     return Math.random() * (max - min + 1) + min;
   } else {
@@ -58,13 +76,20 @@ function randomfloat(min, max, round) {
     return Math.round((Math.random() * (max - min + 1) + min) * roundto) / roundto;
   }
 }
-function degrees(radians2) {
-  return radians2 * (180 / Math.PI);
+function degrees(rads) {
+  if (!rads) {
+    return Error("Please provide a value in Radians!");
+  } else {
+    return rads * (180 / Math.PI);
+  }
 }
-function radians(degrees2) {
-  return degrees2 * (Math.PI / 180);
+function radians(degs) {
+  if (!degs) {
+    return Error("Please provide a value in Degrees!");
+  }
+  return degs * (Math.PI / 180);
 }
-function toms(time, unit) {
+function t2ms(time, unit) {
   switch (unit) {
     case 0 /* ms */:
       return time;
@@ -81,7 +106,7 @@ function toms(time, unit) {
   }
   ;
 }
-function tosecs(time, unit) {
+function t2secs(time, unit) {
   switch (unit) {
     case 0 /* ms */:
       return time / 1e3;
@@ -98,7 +123,7 @@ function tosecs(time, unit) {
   }
   ;
 }
-function tomins(time, unit) {
+function t2mins(time, unit) {
   switch (unit) {
     case 0 /* ms */:
       return time / 6e4;
@@ -115,7 +140,7 @@ function tomins(time, unit) {
   }
   ;
 }
-function tohrs(time, unit) {
+function t2hrs(time, unit) {
   switch (unit) {
     case 0 /* ms */:
       return time / 36e5;
@@ -132,7 +157,7 @@ function tohrs(time, unit) {
   }
   ;
 }
-function todays(time, unit) {
+function t2days(time, unit) {
   switch (unit) {
     case 0 /* ms */:
       return time / 864e5;
@@ -149,7 +174,7 @@ function todays(time, unit) {
   }
   ;
 }
-function towks(time, unit) {
+function t2wks(time, unit) {
   switch (unit) {
     case 0 /* ms */:
       return time / 6048e5;
@@ -166,7 +191,10 @@ function towks(time, unit) {
   }
   ;
 }
-function shuffarr(arr) {
+function shufflearr(arr) {
+  if (!arr) {
+    return Error("Please provide a Array!");
+  }
   const newArr = [...arr];
   for (let i = newArr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -176,6 +204,9 @@ function shuffarr(arr) {
   return newArr;
 }
 function splitarr(arr, size) {
+  if (!arr) {
+    return Error("Please provide a Array!");
+  }
   const newArr = [];
   for (let i = 0; i < arr.length; i += size) {
     newArr.push(arr.slice(i, i + size));
@@ -183,7 +214,10 @@ function splitarr(arr, size) {
   ;
   return newArr;
 }
-function getrandomitemfromarr(arr) {
+function getrandomfromarr(arr) {
+  if (!arr) {
+    return Error("Please provide a Array!");
+  }
   if (arr.length === 0) {
     return "undefined";
   } else {
@@ -193,40 +227,130 @@ function getrandomitemfromarr(arr) {
   }
 }
 function factorialBigInt(n) {
+  if (!n) {
+    return Error("Please provide a Number to perform the operation!");
+  }
   let result = 1n;
-  for (let i = 1n; i <= n; i++) {
+  for (let i = 1n; i <= Math.ceil(n); i++) {
     result *= i;
   }
   let numresult = String(result);
   return numresult;
 }
 function factorial(n) {
-  if (n <= 170) {
+  if (!n) {
+    return Error("Please provide a Number to perform the operation!");
+  }
+  if (Math.ceil(n) <= 170) {
     let result = 1;
-    for (let i = 1; i <= n; i++) {
+    for (let i = 1; i <= Math.ceil(n); i++) {
       result *= i;
     }
     return result;
   } else {
-    return Infinity;
+    return RangeError("Value must be between 0 and 170! Use factorialBigInt() for bigger values!");
   }
+}
+function HexEncodeascii(string) {
+  var arr = [];
+  if (!string) {
+    return Error("Please provide a ASCII string to encode!");
+  }
+  for (var n = 0, l = string.length; n < l; n++) {
+    var hex = Number(string.charCodeAt(n)).toString(16);
+    arr.push(hex);
+  }
+  return arr.join("").toUpperCase();
+}
+function HexEncodeuni(string) {
+  var hex = "";
+  var result = "";
+  if (!string) {
+    return Error("Please provide a Unicode string to encode!");
+  }
+  for (var i = 0; i < string.length; i++) {
+    hex = string.charCodeAt(i).toString(16);
+    result += ("000" + hex).slice(-4);
+  }
+  return result.toUpperCase();
+}
+function HexDecodeuni(string) {
+  var hex = string.match(/.{1,4}/g) || [];
+  var result = "";
+  if (!string) {
+    return Error("Please provide a Hexadecimal string to decode!");
+  } else {
+    for (let i = 0; i < hex.length; i++) {
+      result += String.fromCharCode(parseInt(hex[i], 16));
+    }
+  }
+  return result;
+}
+function HexDecodeascii(string) {
+  var hex = string.toString();
+  var result = "";
+  if (!string) {
+    return Error("Please provide a Hexadecimal string to decode!");
+  }
+  for (var i = 0; i < hex.length; i += 2)
+    result += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+  return result;
+}
+function BinaryEncode(string, bits) {
+  var result = "";
+  if (!string) {
+    return Error("Please provide a string of ASCII characters to encode!");
+  }
+  if (!bits) {
+    if (bits >= 8) {
+      for (let i = 0; i < string.length; i++) {
+        var bin = string.charCodeAt(i).toString(2);
+        result += Array(Math.ceil(bits) - bin.length + 1).join("0") + bin;
+      }
+    } else {
+      return Error("Minimum number of bits per character must be 8!");
+    }
+  } else {
+    for (let i = 0; i < string.length; i++) {
+      var bin = string.charCodeAt(i).toString(2);
+      result += Array(8 - bin.length + 1).join("0") + bin;
+    }
+  }
+  return result;
+}
+function BinaryDecode(string) {
+  if (!string) {
+    return Error("Please provide a Binary string to decode!");
+  }
+  var result = "";
+  var arr = string.match(/.{1,8}/g) || [];
+  for (var i = 0; i < arr.length; i++) {
+    result += String.fromCharCode(parseInt(arr[i], 2));
+  }
+  return result;
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  BinaryDecode,
+  BinaryEncode,
+  HexDecodeascii,
+  HexDecodeuni,
+  HexEncodeascii,
+  HexEncodeuni,
   Unit,
   degrees,
   factorial,
   factorialBigInt,
-  getrandomitemfromarr,
+  getrandomfromarr,
   radians,
   randomfloat,
   randomint,
-  shuffarr,
+  shufflearr,
   splitarr,
-  todays,
-  tohrs,
-  tomins,
-  toms,
-  tosecs,
-  towks
+  t2days,
+  t2hrs,
+  t2mins,
+  t2ms,
+  t2secs,
+  t2wks
 });

@@ -6,20 +6,26 @@ declare enum Unit {
     d = 4,
     wk = 5
 }
-declare function randomint(min: number, max: number): number;
-declare function randomfloat(min: number, max: number, round?: number): number;
-declare function degrees(radians: number): number;
-declare function radians(degrees: number): number;
-declare function toms(time: number, unit: Unit): number;
-declare function tosecs(time: number, unit: Unit): number;
-declare function tomins(time: number, unit: Unit): number;
-declare function tohrs(time: number, unit: Unit): number;
-declare function todays(time: number, unit: Unit): number;
-declare function towks(time: number, unit: Unit): number;
-declare function shuffarr(arr: any[]): any[];
-declare function splitarr(arr: any[], size: number): any[][];
-declare function getrandomitemfromarr(arr: any[]): string;
-declare function factorialBigInt(n: number): string;
-declare function factorial(n: number): number;
+declare function randomint(min: number, max: number): number | Error;
+declare function randomfloat(min: number, max: number, round?: number): number | Error;
+declare function degrees(rads: number): number | Error;
+declare function radians(degs: number): number | Error;
+declare function t2ms(time: number, unit: Unit): number;
+declare function t2secs(time: number, unit: Unit): number;
+declare function t2mins(time: number, unit: Unit): number;
+declare function t2hrs(time: number, unit: Unit): number;
+declare function t2days(time: number, unit: Unit): number;
+declare function t2wks(time: number, unit: Unit): number;
+declare function shufflearr(arr: any[]): any[] | Error;
+declare function splitarr(arr: any[], size: number): any[][] | Error;
+declare function getrandomfromarr(arr: any[]): string | Error;
+declare function factorialBigInt(n: number): string | Error;
+declare function factorial(n: number): number | RangeError | Error;
+declare function HexEncodeascii(string: string): string | Error;
+declare function HexEncodeuni(string: string): string | Error;
+declare function HexDecodeuni(string: string): string | Error;
+declare function HexDecodeascii(string: string): string | Error;
+declare function BinaryEncode(string: string, bits?: number): string | Error;
+declare function BinaryDecode(string: string): string | Error;
 
-export { Unit, degrees, factorial, factorialBigInt, getrandomitemfromarr, radians, randomfloat, randomint, shuffarr, splitarr, todays, tohrs, tomins, toms, tosecs, towks };
+export { BinaryDecode, BinaryEncode, HexDecodeascii, HexDecodeuni, HexEncodeascii, HexEncodeuni, Unit, degrees, factorial, factorialBigInt, getrandomfromarr, radians, randomfloat, randomint, shufflearr, splitarr, t2days, t2hrs, t2mins, t2ms, t2secs, t2wks };

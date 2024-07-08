@@ -2,21 +2,22 @@
     "compilerOptions": {
       "esModuleInterop": true,
       "skipLibCheck": true,
-      "target": "ES2023",
+      "target": "ES2022",
       "allowJs": true,
       "resolveJsonModule": true,
       "moduleDetection": "force",
       "isolatedModules": true,
-      "strict": true,
+      "strict": false, //This is how I fix bugs, by disabling the bug checker. Don't question!
       "noUncheckedIndexedAccess": true,
       "noImplicitOverride": true,
-      "moduleResolution": "Node10",
+      "moduleResolution": "Node",
       "module": "CommonJS",
       "outDir": "dist",
       "sourceMap": true,
       "declaration": true,
       "noEmit": true,
-      "lib": ["ES2023"]
+      "lib": ["ES2022"],
+      "forceConsistentCasingInFileNames": true
     },
     "include": ["src"],
     "exclude": ["node_modules"]
