@@ -1,6 +1,6 @@
 {
   "name": "jsessentials",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -11,8 +11,8 @@
   "scripts": {
     "build": "tsup"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["javascript", "typescript", "tool", "math"],
+  "author": "lnminh1411",
   "license": "ISC",
   "description": "JavaScript fuctions for convinience usage (Possibly Useless)"
 }

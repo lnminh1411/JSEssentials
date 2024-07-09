@@ -9,40 +9,27 @@ var Unit = /* @__PURE__ */ ((Unit2) => {
   return Unit2;
 })(Unit || {});
 function randomint(min, max) {
-  if (!min) {
-    return Error("Please provide a Minimum value!");
-  }
-  if (!max) {
-    return Error("Please provide a Maximum value!");
-  } else {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-function randomfloat(min, max, round) {
-  if (!min) {
-    return Error("Please provide a Minimum value!");
-  }
-  if (!max) {
-    return Error("Please provide a Maximum value!");
-  }
-  if (!round) {
-    return Math.random() * (max - min + 1) + min;
+function randomfloat(min, max, round, withzero) {
+  if (withzero === true) {
+    if (!round) {
+      return Math.random() * (max - min + 1);
+    } else {
+      return (Math.random() * (max - min + 1)).toFixed(round);
+    }
   } else {
-    var roundto = Math.pow(10, round);
-    return Math.round((Math.random() * (max - min + 1) + min) * roundto) / roundto;
+    if (!round) {
+      return Math.round(Math.random() * (max - min + 1));
+    } else {
+      return parseFloat((Math.random() * (max - min + 1)).toFixed(round));
+    }
   }
 }
 function degrees(rads) {
-  if (!rads) {
-    return Error("Please provide a value in Radians!");
-  } else {
-    return rads * (180 / Math.PI);
-  }
+  return rads * (180 / Math.PI);
 }
 function radians(degs) {
-  if (!degs) {
-    return Error("Please provide a value in Degrees!");
-  }
   return degs * (Math.PI / 180);
 }
 function t2ms(time, unit) {
@@ -148,9 +135,6 @@ function t2wks(time, unit) {
   ;
 }
 function shufflearr(arr) {
-  if (!arr) {
-    return Error("Please provide a Array!");
-  }
   const newArr = [...arr];
   for (let i = newArr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -160,9 +144,6 @@ function shufflearr(arr) {
   return newArr;
 }
 function splitarr(arr, size) {
-  if (!arr) {
-    return Error("Please provide a Array!");
-  }
   const newArr = [];
   for (let i = 0; i < arr.length; i += size) {
     newArr.push(arr.slice(i, i + size));
@@ -171,9 +152,6 @@ function splitarr(arr, size) {
   return newArr;
 }
 function getrandomfromarr(arr) {
-  if (!arr) {
-    return Error("Please provide a Array!");
-  }
   if (arr.length === 0) {
     return "undefined";
   } else {
@@ -182,10 +160,7 @@ function getrandomfromarr(arr) {
     return result;
   }
 }
-function factorialBigInt(n) {
-  if (!n) {
-    return Error("Please provide a Number to perform the operation!");
-  }
+function BigIntfactorial(n) {
   let result = 1n;
   for (let i = 1n; i <= Math.ceil(n); i++) {
     result *= i;
@@ -194,9 +169,6 @@ function factorialBigInt(n) {
   return numresult;
 }
 function factorial(n) {
-  if (!n) {
-    return Error("Please provide a Number to perform the operation!");
-  }
   if (Math.ceil(n) <= 170) {
     let result = 1;
     for (let i = 1; i <= Math.ceil(n); i++) {
@@ -209,9 +181,6 @@ function factorial(n) {
 }
 function HexEncodeascii(string) {
   var arr = [];
-  if (!string) {
-    return Error("Please provide a ASCII string to encode!");
-  }
   for (var n = 0, l = string.length; n < l; n++) {
     var hex = Number(string.charCodeAt(n)).toString(16);
     arr.push(hex);
@@ -221,9 +190,6 @@ function HexEncodeascii(string) {
 function HexEncodeuni(string) {
   var hex = "";
   var result = "";
-  if (!string) {
-    return Error("Please provide a Unicode string to encode!");
-  }
   for (var i = 0; i < string.length; i++) {
     hex = string.charCodeAt(i).toString(16);
     result += ("000" + hex).slice(-4);
@@ -233,30 +199,20 @@ function HexEncodeuni(string) {
 function HexDecodeuni(string) {
   var hex = string.match(/.{1,4}/g) || [];
   var result = "";
-  if (!string) {
-    return Error("Please provide a Hexadecimal string to decode!");
-  } else {
-    for (let i = 0; i < hex.length; i++) {
-      result += String.fromCharCode(parseInt(hex[i] ?? "", 16));
-    }
+  for (let i = 0; i < hex.length; i++) {
+    result += String.fromCharCode(parseInt(hex[i] ?? "", 16));
   }
   return result;
 }
 function HexDecodeascii(string) {
   var hex = string.toString();
   var result = "";
-  if (!string) {
-    return Error("Please provide a Hexadecimal string to decode!");
-  }
   for (var i = 0; i < hex.length; i += 2)
     result += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
   return result;
 }
 function BinaryEncode(string, bits) {
   var result = "";
-  if (!string) {
-    return Error("Please provide a string of ASCII characters to encode!");
-  }
   if (bits) {
     if (bits >= 8) {
       for (let i = 0; i < string.length; i++) {
@@ -275,18 +231,15 @@ function BinaryEncode(string, bits) {
   return result;
 }
 function BinaryDecode(string) {
-  if (!string) {
-    return Error("Please provide a Binary string to decode!");
-  } else {
-    var result = "";
-    var arr = string.match(/.{1,8}/g) || [];
-    for (var i = 0; i < arr.length; i++) {
-      result += String.fromCharCode(parseInt(arr[i] ?? "", 2));
-    }
-    return result;
+  var result = "";
+  var arr = string.match(/.{1,8}/g) || [];
+  for (var i = 0; i < arr.length; i++) {
+    result += String.fromCharCode(parseInt(arr[i] ?? "", 2));
   }
+  return result;
 }
 export {
+  BigIntfactorial,
   BinaryDecode,
   BinaryEncode,
   HexDecodeascii,
@@ -296,7 +249,6 @@ export {
   Unit,
   degrees,
   factorial,
-  factorialBigInt,
   getrandomfromarr,
   radians,
   randomfloat,
