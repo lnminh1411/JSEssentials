@@ -7,7 +7,7 @@
       "resolveJsonModule": true,
       "moduleDetection": "force",
       "isolatedModules": true,
-      "strict": false, //This is how I fix bugs, by disabling the bug checker. Don't question!
+      "strict": true,
       "noUncheckedIndexedAccess": true,
       "noImplicitOverride": true,
       "moduleResolution": "Node",

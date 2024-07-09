@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -281,7 +282,7 @@ function HexDecodeuni(string) {
     return Error("Please provide a Hexadecimal string to decode!");
   } else {
     for (let i = 0; i < hex.length; i++) {
-      result += String.fromCharCode(parseInt(hex[i], 16));
+      result += String.fromCharCode(parseInt(hex[i] ?? "", 16));
     }
   }
   return result;
@@ -301,7 +302,7 @@ function BinaryEncode(string, bits) {
   if (!string) {
     return Error("Please provide a string of ASCII characters to encode!");
   }
-  if (!bits) {
+  if (bits) {
     if (bits >= 8) {
       for (let i = 0; i < string.length; i++) {
         var bin = string.charCodeAt(i).toString(2);
@@ -321,13 +322,14 @@ function BinaryEncode(string, bits) {
 function BinaryDecode(string) {
   if (!string) {
     return Error("Please provide a Binary string to decode!");
+  } else {
+    var result = "";
+    var arr = string.match(/.{1,8}/g) || [];
+    for (var i = 0; i < arr.length; i++) {
+      result += String.fromCharCode(parseInt(arr[i] ?? "", 2));
+    }
+    return result;
   }
-  var result = "";
-  var arr = string.match(/.{1,8}/g) || [];
-  for (var i = 0; i < arr.length; i++) {
-    result += String.fromCharCode(parseInt(arr[i], 2));
-  }
-  return result;
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
