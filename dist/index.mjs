@@ -160,7 +160,7 @@ function getrandomfromarr(arr) {
     return result;
   }
 }
-function BigIntfactorial(n) {
+function factorialBigInt(n) {
   let result = 1n;
   for (let i = 1n; i <= Math.ceil(n); i++) {
     result *= i;
@@ -238,17 +238,31 @@ function BinaryDecode(string) {
   }
   return result;
 }
+function Tetration(base, height) {
+  if (!Number.isInteger(base) || !Number.isInteger(height)) {
+    return Error("Only accept interger numbers!");
+  }
+  let result = base;
+  for (var i = 1; i < height; i++) {
+    result = Math.pow(base, result);
+  }
+  if (result === Infinity) {
+    return RangeError("Calculation exceeded 1e309! (Can't perform Tetration with BigInt)");
+  }
+  return result;
+}
 export {
-  BigIntfactorial,
   BinaryDecode,
   BinaryEncode,
   HexDecodeascii,
   HexDecodeuni,
   HexEncodeascii,
   HexEncodeuni,
+  Tetration,
   Unit,
   degrees,
   factorial,
+  factorialBigInt,
   getrandomfromarr,
   radians,
   randomfloat,

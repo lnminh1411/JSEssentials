@@ -173,7 +173,7 @@ export function getrandomfromarr(arr: any[]): string {
     } 
 }
 
-export function BigIntfactorial(n: number): string {
+export function factorialBigInt(n: number): string {
     let result = 1n;
 
     for (let i = 1n; i <= Math.ceil(n); i++) {
@@ -261,4 +261,18 @@ export function BinaryDecode(string: string): string {
         result += String.fromCharCode(parseInt(arr[i] ?? "", 2))
     }
     return result;
+}
+
+export function Tetration(base: number, height: number): number | RangeError | Error{
+    if (!Number.isInteger(base) || !Number.isInteger(height)) {
+        return Error("Only accept interger numbers!")
+    }
+    let result = base;
+    for (var i = 1; i < height; i++) {
+        result = Math.pow(base,result);
+    }
+    if (result === Infinity) {
+        return RangeError("Calculation exceeded 1e309! (Can't perform Tetration with BigInt)"); //Create a PR on this if you know how to do Tetration with BigInt, thanks! (ngl it took me 5hrs to research about this)
+    }
+    return result
 }

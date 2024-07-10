@@ -20,16 +20,17 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
-  BigIntfactorial: () => BigIntfactorial,
   BinaryDecode: () => BinaryDecode,
   BinaryEncode: () => BinaryEncode,
   HexDecodeascii: () => HexDecodeascii,
   HexDecodeuni: () => HexDecodeuni,
   HexEncodeascii: () => HexEncodeascii,
   HexEncodeuni: () => HexEncodeuni,
+  Tetration: () => Tetration,
   Unit: () => Unit,
   degrees: () => degrees,
   factorial: () => factorial,
+  factorialBigInt: () => factorialBigInt,
   getrandomfromarr: () => getrandomfromarr,
   radians: () => radians,
   randomfloat: () => randomfloat,
@@ -205,7 +206,7 @@ function getrandomfromarr(arr) {
     return result;
   }
 }
-function BigIntfactorial(n) {
+function factorialBigInt(n) {
   let result = 1n;
   for (let i = 1n; i <= Math.ceil(n); i++) {
     result *= i;
@@ -283,18 +284,32 @@ function BinaryDecode(string) {
   }
   return result;
 }
+function Tetration(base, height) {
+  if (!Number.isInteger(base) || !Number.isInteger(height)) {
+    return Error("Only accept interger numbers!");
+  }
+  let result = base;
+  for (var i = 1; i < height; i++) {
+    result = Math.pow(base, result);
+  }
+  if (result === Infinity) {
+    return RangeError("Calculation exceeded 1e309! (Can't perform Tetration with BigInt)");
+  }
+  return result;
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  BigIntfactorial,
   BinaryDecode,
   BinaryEncode,
   HexDecodeascii,
   HexDecodeuni,
   HexEncodeascii,
   HexEncodeuni,
+  Tetration,
   Unit,
   degrees,
   factorial,
+  factorialBigInt,
   getrandomfromarr,
   radians,
   randomfloat,

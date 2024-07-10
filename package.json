@@ -9,9 +9,14 @@
     "typescript": "^5.5.3"
   },
   "scripts": {
-    "build": "gpg-connect-agent reloadagent /bye && tsup" //added comments for development convenient , have no effect on main codes. If you don't have a gpg key, remove "gpg-connect-agent reloadagent /bye && "
+    "build": "gpg-connect-agent reloadagent /bye && tsup"
   },
-  "keywords": ["javascript", "typescript", "tool", "math"],
+  "keywords": [
+    "javascript",
+    "typescript",
+    "tool",
+    "math"
+  ],
   "author": "lnminh1411",
   "license": "ISC",
   "description": "JavaScript fuctions for convinience usage (Possibly Useless)"
