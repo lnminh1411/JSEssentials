@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "devDependencies": {
     "tsup": "^8.2.2",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "scripts": {
     "build": "gpg-connect-agent reloadagent /bye && tsup"
